@@ -186,6 +186,7 @@ with status:
 
                 # pop up message
                 st.write("数据已经保存到数据库。")
+                status.update(label="数据同步完成!", state="complete", expanded=False)
         else:
             with st.status(
                 f"目前数据未同步，{5 - st.session_state.debonce % 5} 次更新后自动保存数据"
