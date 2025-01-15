@@ -1,3 +1,5 @@
+import hashlib
+
 import pandas as pd
 import requests
 import streamlit as st
@@ -112,7 +114,10 @@ def reset():
 
 if "validated" not in st.session_state:
     psw = st.text_input("请输入更新密码", type="password")
-    if psw == "chiyuanshixiaozhu":
+    if (
+        hashlib.sha256(psw.encode()).hexdigest()
+        == "5cfdfd5ccd6f351410bafa864d4c2907b5b05165bd1ac7ffa7aa64372d45df71"
+    ):
         st.session_state.validated = True
     else:
         st.error("密码验证失败，您仅能查看数据")
@@ -172,7 +177,7 @@ with status:
     if "validated" in st.session_state and st.session_state.validated:
         # sync data to db
         if "data" in st.session_state and st.session_state.debonce % 5 == 0:
-            with st.status("正在保存数据到数据库..."):
+            with st.status("正在保存数据到数据库...") as status:
                 collection = st.session_state.data
 
                 update_operation = {
