@@ -125,7 +125,7 @@ st.markdown(f"FurryFurCon 2025 Guangdong @ {st.session_state.external_ip}")
 
 # 设置网页标题
 st.header("特雷亚大陆的故事 新春特辑 2025")
-st.title("一起喂年兽 @ 冒险者公会 (A2)")
+st.title("我们一起喂年兽 @ 冒险者公会 (A2)")
 
 st.line_chart(get_year_log(), color=["#4fa28f", "#c74635"])
 
